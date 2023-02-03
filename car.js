@@ -74,8 +74,8 @@
   const bullets = [];
 
   function updateCar(car, i) {
-    if (car.isHit) {
-      if (car === localCar) {
+    if (car === localCar) {
+      if (car.isHit) {
         car.isHit = false;
         car.xVelocity = clamp(
           car.xVelocity * -2,
@@ -87,11 +87,10 @@
           -1 * maxVelocity,
           maxVelocity
         );
+        sendParams(localCar);
       }
-    }
 
-    if (car.isShot) {
-      if (car === localCar) {
+      if (car.isShot) {
         car.isShot = false;
         car.x = Math.random() * WIDTH;
         car.y = Math.random() * HEIGHT;
@@ -274,15 +273,12 @@
             { x: bullet.x, y: bullet.y, r: 2 }
           )
         ) {
-          if (car !== localCar) {
-            if (!car.isShot) {
-              car.isShot = true;
-              changed = true;
-              if (bullet.local) {
-                localCar.points++;
-              }
+          if (car !== localCar && !car.isShot) {
+            car.isShot = true;
+            changed = true;
+            if (bullet.local) {
+              localCar.points++;
             }
-            continue;
           }
         }
       }
