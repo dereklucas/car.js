@@ -456,7 +456,7 @@
 
   requestAnimationFrame(render);
 
-  const socket = io("https://car.pakastin.fi", {
+  const socket = io("https://car-ws.vgood.science", {
     withCredentials: true,
   });
 
