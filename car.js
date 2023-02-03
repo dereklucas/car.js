@@ -269,7 +269,6 @@
 
         if (
           bullet &&
-          !bullet.local &&
           circlesHit(
             { x: car.x, y: car.y, r: 7.5 },
             { x: bullet.x, y: bullet.y, r: 2 }
@@ -278,15 +277,13 @@
           if (car !== localCar) {
             if (!car.isShot) {
               car.isShot = true;
+              changed = true;
               if (bullet.local) {
                 localCar.points++;
               }
-              changed = true;
             }
             continue;
           }
-          car.isShot = true;
-          changed = true;
         }
       }
     }
